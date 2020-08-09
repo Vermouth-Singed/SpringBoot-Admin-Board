@@ -1,4 +1,6 @@
-# Spring Boot + MySQL + VueJS + VuetifyJS 를 활용한 Admin Board
+# Spring Boot Admin Board
+## - 사용 언어
+### - Spring Boot + MySQL + VueJS + VuetifyJS
 
 ## - 빌드 방법
 ### 1. Project update from git repository
