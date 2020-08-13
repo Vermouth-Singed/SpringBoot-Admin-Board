@@ -9,4 +9,4 @@
 ![image](https://user-images.githubusercontent.com/24692694/90168447-0ed90700-ddd8-11ea-84ea-5d19a13276b2.png)
 
 ## 진행상황
-### - `Working on Vuex Login with JWT Token
+### - `Working on Vuex Login with JWT Token`
