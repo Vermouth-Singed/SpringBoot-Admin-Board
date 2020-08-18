@@ -13,7 +13,7 @@ import java.io.Serializable;
 @AllArgsConstructor(staticName = "of")
 @Builder
 @Accessors(chain = true)
-public class User implements Serializable {
+public class UserVO implements Serializable {
     private String user_id;
     private String user_password;
     private String user_name;
@@ -23,4 +23,7 @@ public class User implements Serializable {
     private String user_password_re;
     private boolean delete_checked;
     private boolean update_checked;
+    private String status;
+    private String jwt_token;
+    private String jwt_key;
 }
