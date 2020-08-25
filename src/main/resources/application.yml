@@ -1,6 +1,4 @@
 spring:
-  profiles:
-    active: mysql
   datasource:
     url: jdbc:mysql://qhdduswh.ipdisk.co.kr:3306/qhddusl?serverTimezone=Asia/Seoul
     username: qhddusl
@@ -15,3 +13,7 @@ jwt:
 mybatis:
   mapper-locations: mappers/*.xml
   type-aliases-package: com.admin.vermouth.domain
+server:
+  servlet:
+    session:
+      timeout: 10m

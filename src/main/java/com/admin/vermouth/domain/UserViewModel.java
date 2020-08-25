@@ -6,6 +6,8 @@ import lombok.Data;
 public class UserViewModel {
     private String userId;
     private String userPassword;
+    private String jwt_token;
+    private String jwt_key;
 
     private UserVO user;
 }

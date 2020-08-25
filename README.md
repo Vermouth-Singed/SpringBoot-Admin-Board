@@ -1,12 +1,12 @@
 # Spring Boot Admin Board
 ## 사용언어
-### - Spring Boot + MySQL + VueJS + VuetifyJS
+### - Spring Boot + MySQL + VueJS (Vuetify, Vuex, Vue-Router)
 
 ## 빌드방법
 ### 1. Project update from git repository
 ### 2. Run SpringBootAdminBoardApplication (a.k.a Shift+F10)
 ### 3. Voila!
-![image](https://user-images.githubusercontent.com/24692694/90340854-e77f7580-e035-11ea-983c-78fe22794e11.png)
+![image](https://user-images.githubusercontent.com/24692694/91194559-3b274880-e733-11ea-865e-043d85fcac12.png)
 
 ## 화면설명
 ### 1. 아이디 및 비밀번호는 동일 (예시: `user01/user01`)
@@ -14,4 +14,4 @@
 ### 3. 우측상단 아이콘 클릭하면 로그아웃
 ### 4. 로그아웃 완료 후 로그인 화면으로 리다이렉트
 ### 5. 페이지 전환할 때마다 로그인 체크
-### 6. 로그인 유효기간은 10분으로 설정
+### 6. 로그인 유효기간은 10분(default:10m)으로 설정

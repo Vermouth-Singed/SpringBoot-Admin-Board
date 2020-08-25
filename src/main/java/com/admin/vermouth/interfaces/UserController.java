@@ -25,4 +25,18 @@ public class UserController {
 
         return user;
     }
+
+    @GetMapping("/check")
+    public UserViewModel check(UserViewModel vm, HttpSession session){
+        vm.setJwt_token((String)session.getAttribute("jwt_token"));
+        vm.setJwt_key((String)session.getAttribute("jwt_key"));
+
+        return vm;
+    }
+
+    @GetMapping("/logout")
+    public void logout(HttpSession session){
+        session.removeAttribute("jwt_token");
+        session.removeAttribute("jwt_key");
+    }
 }
