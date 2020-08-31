@@ -8,6 +8,7 @@ public class UserViewModel {
     private String userPassword;
     private String jwt_token;
     private String jwt_key;
+    private String status;
 
     private UserVO user;
 }

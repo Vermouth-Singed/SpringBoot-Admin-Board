@@ -4,9 +4,7 @@ import com.admin.vermouth.application.UserService;
 import com.admin.vermouth.domain.UserVO;
 import com.admin.vermouth.domain.UserViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 
@@ -38,5 +36,12 @@ public class UserController {
     public void logout(HttpSession session){
         session.removeAttribute("jwt_token");
         session.removeAttribute("jwt_key");
+    }
+
+    @PostMapping("/")
+    public UserViewModel create(@RequestBody UserViewModel vm){
+        vm.setStatus(userService.createUser(vm.getUser()));
+
+        return vm;
     }
 }

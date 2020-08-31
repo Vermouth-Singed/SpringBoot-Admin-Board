@@ -4,6 +4,8 @@ import com.admin.vermouth.domain.UserVO;
 import com.admin.vermouth.repository.UserMapper;
 import com.admin.vermouth.utils.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -26,5 +28,21 @@ public class UserService {
         }
 
         return new UserVO();
+    }
+
+    public String createUser(UserVO user) {
+        String result = "success";
+
+        try{
+            PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
+            user.setUser_password(passwordEncoder.encode(user.getUser_password()));
+        }catch(Exception e){
+            e.printStackTrace();
+
+            result = "fail";
+        }
+
+        return result;
     }
 }
