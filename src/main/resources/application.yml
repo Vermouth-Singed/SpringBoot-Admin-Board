@@ -8,6 +8,8 @@ spring:
       name: vermouth
       password: vermouth
       roles: manager
+  jpa:
+    show-sql: true
 jwt:
   secret: 12345678901234567890123456789012
 mybatis:

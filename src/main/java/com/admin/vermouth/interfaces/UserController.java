@@ -40,8 +40,13 @@ public class UserController {
 
     @PostMapping("/")
     public UserViewModel create(@RequestBody UserViewModel vm){
-        vm.setStatus(userService.createUser(vm.getUser()));
+        vm.setStatus(userService.createUser(vm.getUserId(), vm.getUserPassword(), vm.getUserName()));
 
         return vm;
+    }
+
+    @GetMapping("/test")
+    public UserViewModel test(){
+        return null;
     }
 }
