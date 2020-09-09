@@ -5,8 +5,11 @@ import com.admin.vermouth.repository.UserMapper;
 import com.admin.vermouth.repository.UserRepository;
 import com.admin.vermouth.utils.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
+
+import static com.admin.vermouth.configuration.SecurityConfig.passwordEncoder;
 
 @Service
 public class UserService {
@@ -18,21 +21,16 @@ public class UserService {
     UserRepository userRepository;
 
     @Autowired
-    PasswordEncoder passwordEncoder;
-
-    @Autowired
     UserMapper userMapper;
 
     public UserVO getLoginInfo(String userId, String userPassword) {
-        UserVO user = userMapper.getLoginInfo(userId, userPassword);
+        Optional<UserVO> list = userRepository.
+                findByUserIdAndUserPassword(userId,
+                        passwordEncoder(userPassword)).stream().findFirst();
 
-//        Optional<UserVO> user = userRepository.
-//                findByUserIdAndUserPassword(userId,
-//                        passwordEncoder.encode(userPassword)).stream().findFirst();
-//        System.out.println(user);
-//        System.out.println(userId+">>"+userPassword+">>"+passwordEncoder.encode(userPassword));
+        if(list.isPresent()){
+            UserVO user = list.get();
 
-        if(user != null){
             user.setJwt_token(jwtUtil.createToken(user.getUserName()));
             user.setJwt_key(jwtUtil.getSecret());
 
@@ -47,7 +45,7 @@ public class UserService {
 
         try{
             UserVO user = UserVO.builder().userId(userId).
-                            userPassword(passwordEncoder.encode(userPassword)).
+                            userPassword(passwordEncoder(userPassword)).
                             userName(userName).build();
 
             userRepository.save(user);

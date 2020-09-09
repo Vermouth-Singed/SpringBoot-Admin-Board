@@ -7,6 +7,9 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -20,8 +23,25 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 headers().frameOptions().disable();
     }
 
-    @Bean
-    public BCryptPasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
+    public static String passwordEncoder(String target) {
+        try {
+            MessageDigest sha = MessageDigest.getInstance("SHA-256");
+
+            sha.update(target.getBytes());
+
+            byte byteData[] = sha.digest();
+
+            StringBuffer result_sbf = new StringBuffer();
+
+            for(byte val : byteData) {
+                result_sbf.append(Integer.toString((val & 0xff) + 0x100, 16).substring(1));
+            }
+
+            return result_sbf.toString();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 }
