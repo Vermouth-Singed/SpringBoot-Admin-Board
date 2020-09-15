@@ -45,8 +45,17 @@ public class UserController {
         return vm;
     }
 
-    @GetMapping("/test")
-    public UserViewModel test(){
-        return null;
+    @PutMapping("/")
+    public UserViewModel update(@RequestBody UserViewModel vm){
+        vm.setStatus(userService.updateUser(vm.getUserId(), vm.getUserPassword(), vm.getUserName()));
+
+        return vm;
+    }
+
+    @DeleteMapping("/")
+    public UserViewModel delete(@RequestBody UserViewModel vm){
+        vm.setStatus(userService.deleteUser(vm.getUserId()));
+
+        return vm;
     }
 }

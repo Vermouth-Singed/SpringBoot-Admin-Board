@@ -8,7 +8,7 @@ import lombok.experimental.Accessors;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
@@ -21,6 +21,6 @@ public class UserVO extends CommonVO{
     private String userId;
     private String userPassword;
     private String userName;
-    private LocalDate updateDate;
-    private LocalDate registerDate;
+    private LocalDateTime updateDate;
+    private LocalDateTime registerDate;
 }
