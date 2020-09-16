@@ -38,21 +38,21 @@ public class UserController {
         session.removeAttribute("jwt_key");
     }
 
-    @PostMapping("/")
+    @PostMapping("")
     public UserViewModel create(@RequestBody UserViewModel vm){
         vm.setStatus(userService.createUser(vm.getUserId(), vm.getUserPassword(), vm.getUserName()));
 
         return vm;
     }
 
-    @PutMapping("/")
+    @PutMapping("")
     public UserViewModel update(@RequestBody UserViewModel vm){
         vm.setStatus(userService.updateUser(vm.getUserId(), vm.getUserPassword(), vm.getUserName()));
 
         return vm;
     }
 
-    @DeleteMapping("/")
+    @DeleteMapping("")
     public UserViewModel delete(@RequestBody UserViewModel vm){
         vm.setStatus(userService.deleteUser(vm.getUserId()));
 
