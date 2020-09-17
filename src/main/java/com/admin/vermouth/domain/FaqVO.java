@@ -1,24 +1,26 @@
 package com.admin.vermouth.domain;
 
 import lombok.*;
-import lombok.experimental.Accessors;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.time.LocalDateTime;
 
 @Data
 @EqualsAndHashCode(callSuper=false)
 @NoArgsConstructor
-@AllArgsConstructor(staticName = "of")
+@AllArgsConstructor
 @Builder
-@Accessors(chain = true)
-@Entity(name="sample_user")
-public class UserVO extends CommonVO{
+@Entity(name="sample_faq")
+public class FaqVO extends CommonVO{
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+    private String title;
+    private String content;
     private String userId;
-    private String userPassword;
-    private String userName;
     private LocalDateTime updateDate;
     private LocalDateTime registerDate;
 }

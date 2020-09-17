@@ -1,11 +1,13 @@
 package com.admin.vermouth.repository;
 
-import com.admin.vermouth.domain.UserVO;
+import com.admin.vermouth.domain.FaqVO;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 @Mapper
-public interface UserMapper{
-    UserVO getLoginInfo(String user_id, String user_password);
+public interface FaqMapper {
+    List<FaqVO> getFaqList(int first, int last);
 }

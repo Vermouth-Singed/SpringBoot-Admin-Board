@@ -1,7 +1,6 @@
 package com.admin.vermouth.application;
 
 import com.admin.vermouth.domain.UserVO;
-import com.admin.vermouth.repository.UserMapper;
 import com.admin.vermouth.repository.UserRepository;
 import com.admin.vermouth.utils.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,9 +19,6 @@ public class UserService {
 
     @Autowired
     UserRepository userRepository;
-
-    @Autowired
-    UserMapper userMapper;
 
     public UserVO getLoginInfo(String userId, String userPassword) {
         Optional<UserVO> list = userRepository.
@@ -44,9 +40,9 @@ public class UserService {
     public String createUser(String userId, String userPassword, String userName) {
         try{
             UserVO user = UserVO.builder().userId(userId).
-                    userPassword(passwordEncoder(userPassword)).
-                    userName(userName).registerDate(LocalDateTime.now()).
-                    updateDate(LocalDateTime.now()).build();
+                            userPassword(passwordEncoder(userPassword)).
+                            userName(userName).registerDate(LocalDateTime.now()).
+                            updateDate(LocalDateTime.now()).build();
 
             userRepository.save(user);
         }catch(Exception e){
