@@ -8,6 +8,6 @@
             FROM SN_FAQ
         ) faq
         WHERE rank BETWEEN #{first} AND #{last}
-        ORDER BY update_date DESC, title, id
+        ORDER BY rank
     </select>
 </mapper>
