@@ -37,6 +37,9 @@ public class FaqService {
     public List<FaqVO> readList(int pageNo, int rowSize) {
         try{
             return faqMapper.getFaqList((pageNo-1)*rowSize+1, pageNo*rowSize);
+            
+//            return faqRepository.findAll(PageRequest.of(pageNo, rowSize, Sort.by("updateDate").descending().
+//                    and(Sort.by("title").and(Sort.by("id"))))).getContent();
         }catch(Exception e){
             e.printStackTrace();
         }
