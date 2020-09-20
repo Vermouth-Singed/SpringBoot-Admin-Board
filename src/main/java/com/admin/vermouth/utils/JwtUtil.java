@@ -7,7 +7,9 @@ import lombok.Getter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import java.util.Calendar;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
+import java.util.Date;
 
 @Component
 public class JwtUtil {
@@ -17,14 +19,13 @@ public class JwtUtil {
     private String secret;
 
     public String createToken(String userName){
-        Calendar calendar = Calendar.getInstance();
-        calendar.add(Calendar.MINUTE,10);
+        LocalDateTime now = LocalDateTime.now();
+        now.plusMinutes(10);
 
         return Jwts.builder().claim("user_name", userName).
-                claim("expired_date",calendar.get(Calendar.YEAR)+"/"+(calendar.get(Calendar.MONTH)+1)+
-                        "/"+calendar.get(Calendar.DAY_OF_MONTH)+"/"+calendar.get(Calendar.HOUR_OF_DAY)+"/"
-                        +calendar.get(Calendar.MINUTE)).
-                setExpiration(calendar.getTime()).
+                claim("expired_date",now.getYear()+"/"+now.getMonthValue()+"/"+now.getDayOfMonth()+"/"+
+                        now.getHour()+"/"+now.getMinute()).
+                setExpiration(Date.from(now.toInstant(ZoneOffset.UTC))).
                 signWith(Keys.hmacShaKeyFor(this.secret.getBytes()), SignatureAlgorithm.HS256).compact();
     }
 }

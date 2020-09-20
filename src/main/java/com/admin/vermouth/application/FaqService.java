@@ -1,9 +1,10 @@
 package com.admin.vermouth.application;
 
 import com.admin.vermouth.domain.FaqVO;
-import com.admin.vermouth.repository.FaqMapper;
 import com.admin.vermouth.repository.FaqRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -13,9 +14,6 @@ import java.util.List;
 public class FaqService {
     @Autowired
     FaqRepository faqRepository;
-
-    @Autowired
-    FaqMapper faqMapper;
 
     public FaqVO readOne(long id) {
         try{
@@ -35,10 +33,8 @@ public class FaqService {
 
     public List<FaqVO> readList(int pageNo, int rowSize) {
         try{
-            return faqMapper.getFaqList((pageNo-1)*rowSize+1, pageNo*rowSize);
-            
-//            return faqRepository.findAll(PageRequest.of(pageNo, rowSize, Sort.by("updateDate").descending().
-//                    and(Sort.by("title").and(Sort.by("id"))))).getContent();
+            return faqRepository.findAll(PageRequest.of(pageNo-1, rowSize, Sort.by("updateDate").descending().
+                    and(Sort.by("title").and(Sort.by("id"))))).getContent();
         }catch(Exception e){
             e.printStackTrace();
         }
