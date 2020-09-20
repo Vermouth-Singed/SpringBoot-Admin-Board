@@ -7,6 +7,8 @@ import lombok.Getter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.Date;
@@ -19,12 +21,16 @@ public class JwtUtil {
     private String secret;
 
     public String createToken(String userName){
-        LocalDateTime now = LocalDateTime.now();
-        now.plusMinutes(10);
+        LocalDateTime now = LocalDateTime.now().plusMinutes(10);
+
+        NumberFormat fmt = new DecimalFormat("00");
 
         return Jwts.builder().claim("user_name", userName).
-                claim("expired_date",now.getYear()+"/"+now.getMonthValue()+"/"+now.getDayOfMonth()+"/"+
-                        now.getHour()+"/"+now.getMinute()).
+                claim("expired_date",now.getYear()+"/"+
+                        fmt.format(now.getMonthValue())+"/"+
+                        fmt.format(now.getDayOfMonth())+"/"+
+                        fmt.format(now.getHour())+"/"+
+                        fmt.format(now.getMinute())).
                 setExpiration(Date.from(now.toInstant(ZoneOffset.UTC))).
                 signWith(Keys.hmacShaKeyFor(this.secret.getBytes()), SignatureAlgorithm.HS256).compact();
     }
