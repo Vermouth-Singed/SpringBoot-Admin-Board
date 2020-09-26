@@ -2,6 +2,10 @@
 ## 사용언어
 ### - Spring Boot + MySQL + VueJS (Vuetify, Vuex, Vue-Router)
 
+##데이터베이스 구조 및 데이터
+### - resources/mysql_query/query.sql
+### - 접속정보 변경은 application.yml 파일 수정
+
 ## 빌드방법
 ### 1. Project update from git repository
 ### 2. Run SpringBootAdminBoardApplication (a.k.a Shift+F10)
