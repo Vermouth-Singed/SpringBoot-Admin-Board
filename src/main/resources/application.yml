@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:mysql://qhdduswh.ipdisk.co.kr:3306/qhddusl?serverTimezone=Asia/Seoul
+    url: jdbc:mysql://arraylist.ipdisk.co.kr:3306/qhddusl?serverTimezone=Asia/Seoul
     username: qhddusl
     password: qhddusl2004
   security:
