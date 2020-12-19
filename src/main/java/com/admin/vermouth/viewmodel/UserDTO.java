@@ -6,7 +6,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class UserViewModel extends CommonViewModel{
+public class UserDTO extends CommonDTO {
     private String userPassword;
     private String userName;
     private String jwt_token;

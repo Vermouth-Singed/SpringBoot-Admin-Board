@@ -8,7 +8,7 @@ import java.util.List;
 
 @Getter
 @Setter
-public class FaqViewModel extends CommonViewModel{
+public class FaqDTO extends CommonDTO {
     private String title;
     private String content;
 

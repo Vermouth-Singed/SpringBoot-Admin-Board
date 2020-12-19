@@ -2,7 +2,7 @@ package com.admin.vermouth.interfaces;
 
 import com.admin.vermouth.application.FaqService;
 import com.admin.vermouth.domain.FaqVO;
-import com.admin.vermouth.viewmodel.FaqViewModel;
+import com.admin.vermouth.viewmodel.FaqDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,7 +27,7 @@ public class FaqController {
     }
 
     @PostMapping("")
-    public FaqViewModel create(@RequestBody FaqViewModel vm){
+    public FaqDTO create(@RequestBody FaqDTO vm){
 //        http post localhost:8080/api/faq title=제목2 content=내용2 userId=admin
         vm.setStatus(faqService.createFaq(vm.getTitle(), vm.getContent(), vm.getUserId()));
 
@@ -35,7 +35,7 @@ public class FaqController {
     }
 
     @PutMapping("")
-    public FaqViewModel update(@RequestBody FaqViewModel vm){
+    public FaqDTO update(@RequestBody FaqDTO vm){
 //        http put localhost:8080/api/faq id=2 title=제목3 content=내용3 userId=admin
         vm.setStatus(faqService.updateFaq(vm.getId(), vm.getTitle(), vm.getContent(), vm.getUserId()));
 
@@ -43,7 +43,7 @@ public class FaqController {
     }
 
     @DeleteMapping("")
-    public FaqViewModel delete(FaqViewModel vm){
+    public FaqDTO delete(FaqDTO vm){
 //        http delete localhost:8080/api/faq?id=6
         vm.setStatus(faqService.deleteFaq(vm.getId()));
 

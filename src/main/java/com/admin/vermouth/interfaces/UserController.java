@@ -2,7 +2,7 @@ package com.admin.vermouth.interfaces;
 
 import com.admin.vermouth.application.UserService;
 import com.admin.vermouth.domain.UserVO;
-import com.admin.vermouth.viewmodel.UserViewModel;
+import com.admin.vermouth.viewmodel.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,7 +15,7 @@ public class UserController {
     UserService userService;
 
     @GetMapping("/login")
-    public UserVO login(UserViewModel vm, HttpSession session){
+    public UserVO login(UserDTO vm, HttpSession session){
         UserVO user = userService.getLoginInfo(vm.getUserId(),vm.getUserPassword());
 
         session.setAttribute("jwt_token", user.getJwt_token());
@@ -25,7 +25,7 @@ public class UserController {
     }
 
     @GetMapping("/check")
-    public UserViewModel check(UserViewModel vm, HttpSession session){
+    public UserDTO check(UserDTO vm, HttpSession session){
         vm.setJwt_token((String)session.getAttribute("jwt_token"));
         vm.setJwt_key((String)session.getAttribute("jwt_key"));
 
@@ -39,7 +39,7 @@ public class UserController {
     }
 
     @PostMapping("")
-    public UserViewModel create(@RequestBody UserViewModel vm){
+    public UserDTO create(@RequestBody UserDTO vm){
 //        http post localhost:8080/api/user userId=vermouth userPassword=vermouth userName=버무스
         vm.setStatus(userService.createUser(vm.getUserId(), vm.getUserPassword(), vm.getUserName()));
 
@@ -47,7 +47,7 @@ public class UserController {
     }
 
     @PutMapping("")
-    public UserViewModel update(@RequestBody UserViewModel vm){
+    public UserDTO update(@RequestBody UserDTO vm){
 //        http put localhost:8080/api/user userId=vermouth userPassword=vermouth userName=버무스스2
         vm.setStatus(userService.updateUser(vm.getUserId(), vm.getUserPassword(), vm.getUserName()));
 
@@ -55,7 +55,7 @@ public class UserController {
     }
 
     @DeleteMapping("")
-    public UserViewModel delete(UserViewModel vm){
+    public UserDTO delete(UserDTO vm){
 //        http delete localhost:8080/api/user?userId=vermouth
         vm.setStatus(userService.deleteUser(vm.getUserId()));
 

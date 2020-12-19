@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class CommonViewModel {
+public class CommonDTO {
     private long id;
 
     private String userId;
