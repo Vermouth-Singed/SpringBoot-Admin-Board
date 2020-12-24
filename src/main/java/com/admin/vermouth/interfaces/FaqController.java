@@ -2,7 +2,7 @@ package com.admin.vermouth.interfaces;
 
 import com.admin.vermouth.application.FaqService;
 import com.admin.vermouth.domain.FaqVO;
-import com.admin.vermouth.viewmodel.FaqDTO;
+import com.admin.vermouth.dto.FaqDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

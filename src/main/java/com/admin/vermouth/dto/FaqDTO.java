@@ -1,4 +1,4 @@
-package com.admin.vermouth.viewmodel;
+package com.admin.vermouth.dto;
 
 import com.admin.vermouth.domain.FaqVO;
 import lombok.Getter;

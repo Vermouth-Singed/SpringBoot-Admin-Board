@@ -2,7 +2,7 @@ package com.admin.vermouth.interfaces;
 
 import com.admin.vermouth.application.UserService;
 import com.admin.vermouth.domain.UserVO;
-import com.admin.vermouth.viewmodel.UserDTO;
+import com.admin.vermouth.dto.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
