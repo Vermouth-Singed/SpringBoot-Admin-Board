@@ -4,9 +4,13 @@ import com.admin.vermouth.domain.UserVO;
 import com.admin.vermouth.repository.UserRepository;
 import com.admin.vermouth.utils.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 import static com.admin.vermouth.configuration.SecurityConfig.passwordEncoder;
@@ -89,5 +93,45 @@ public class UserService {
         }
 
         return "success";
+    }
+
+    public UserVO readOne(String id) {
+        try{
+            List<UserVO> list = userRepository.findByUserId(id);
+
+            if(list != null && list.size() > 0){
+                return list.get(0);
+            }else{
+                return UserVO.builder().build();
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    public Page<UserVO> readByUserIdStartingWithPagingList(int pageNo, int rowSize, String userId) {
+        try{
+            return userRepository.findByUserIdStartingWith(userId
+                    , PageRequest.of(pageNo-1, rowSize, Sort.by("userId").and(Sort.by("userName")))
+            );
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    public Page<UserVO> readByUserIdPagingList(int pageNo, int rowSize, String userId) {
+        try{
+            return userRepository.findByUserId(userId
+                    , PageRequest.of(pageNo-1, rowSize)
+            );
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+        return null;
     }
 }

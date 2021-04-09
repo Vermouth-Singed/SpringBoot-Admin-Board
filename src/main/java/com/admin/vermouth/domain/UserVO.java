@@ -1,24 +1,28 @@
 package com.admin.vermouth.domain;
 
 import lombok.*;
-import lombok.experimental.Accessors;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
-@Data
-@EqualsAndHashCode(callSuper=false)
+
+@Getter
+@Setter
 @NoArgsConstructor
-@AllArgsConstructor(staticName = "of")
+@AllArgsConstructor
 @Builder
-@Accessors(chain = true)
-@Entity(name="sample_user")
+@Entity(name = "user_list")
 public class UserVO extends CommonVO{
     @Id
     private String userId;
+
     private String userPassword;
     private String userName;
     private LocalDateTime updateDate;
     private LocalDateTime registerDate;
+
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "userId")
+    private List<BoardVO> boardList;
 }
